@@ -11,13 +11,15 @@ Built and tested using a local Kind cluster.
 | [01-probes-crashloop](./01-probes-crashloop/) | Container Lifecycle & Health Checks | `CrashLoopBackOff`, probe misconfigurations, port mismatches |
 | [02-network-isolation](./02-network-isolation/) | Network Security & Ingress | NetworkPolicy restrictions, cross-namespace traffic, DNS connectivity |
 | [03-pvc-storage](./03-pvc-storage/) | Persistent Storage & PVC Triage | PVC provisioning failures, `WaitForFirstConsumer`, RWO persistence |
+| [04-oom-quotas](./04-oom-quotas/) | Resource Management & OOMKilled Triage | `OOMKilled`, `ResourceQuota` failures, `LimitRange` defaults |
 
 ## What This Repository Demonstrates
 
 - Kubernetes troubleshooting and root cause analysis
-- Pod health checks and lifecycle management
-- NetworkPolicy and ingress troubleshooting
-- PersistentVolumeClaim and StorageClass management
-- Data persistence and storage access modes
+- Container resource requests and limits
+- Namespace resource management
+- ResourceQuota and LimitRange configuration
+- Persistent storage and PVC management
+- NetworkPolicy and application health check troubleshooting
 
-Each runbook includes the failure scenario, investigation steps, root cause, resolution, and verification.
+Each runbook documents the failure scenario, investigation, root cause, resolution, and verification.
