@@ -1,8 +1,23 @@
-# Kubernetes Production SRE Triage Runbooks
+# Kubernetes SRE Triage Runbooks
 
-Hands-on production incident reproduction, root cause analysis (RCA), and remediation runbooks executed on local Kind clusters.
+A collection of hands-on Kubernetes troubleshooting labs where I reproduce common production-style failures, investigate their root causes, and document the steps used to resolve them.
 
-| # | Incident Scenario | Root Cause & Architecture | Runbook & Manifests |
-| :--- | :--- | :--- | :--- |
-| **01** | **Pod CrashLoopBackOff & Premature Traffic Routing** | Aggressive `livenessProbe` killing slow-starting containers and missing `startupProbe` / `readinessProbe` separation. | [`01-probes-crashloop/`](./01-probes-crashloop/) |
-| **02** | **Cross-Namespace Database Exposure & DNS/Ingress Blackout** | Default all-allow flat pod networking mitigated via Calico CNI, `default-deny-all` `NetworkPolicy`, and targeted whitelists (`UDP/TCP 53`, `TCP 80`, `TCP 5432`). | [`02-network-isolation/`](./02-network-isolation/) |
+Built and tested using a local Kind cluster.
+
+## Repository Structure
+
+| Runbook | Focus Area | Key Issues |
+| :--- | :--- | :--- |
+| [01-probes-crashloop](./01-probes-crashloop/) | Container Lifecycle & Health Checks | `CrashLoopBackOff`, probe misconfigurations, port mismatches |
+| [02-network-isolation](./02-network-isolation/) | Network Security & Ingress | NetworkPolicy restrictions, cross-namespace traffic, DNS connectivity |
+| [03-pvc-storage](./03-pvc-storage/) | Persistent Storage & PVC Triage | PVC provisioning failures, `WaitForFirstConsumer`, RWO persistence |
+
+## What This Repository Demonstrates
+
+- Kubernetes troubleshooting and root cause analysis
+- Pod health checks and lifecycle management
+- NetworkPolicy and ingress troubleshooting
+- PersistentVolumeClaim and StorageClass management
+- Data persistence and storage access modes
+
+Each runbook includes the failure scenario, investigation steps, root cause, resolution, and verification.

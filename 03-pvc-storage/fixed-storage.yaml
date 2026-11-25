@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: analytics-data-pvc
+  namespace: prod-orders
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: standard
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: orders-db
+  namespace: prod-orders
+  labels:
+    app: orders-db
+spec:
+  containers:
+  - name: db
+    image: busybox:1.36
+    command: ["sh", "-c", "echo 'order_id=1001 status=PAID' >> /var/lib/postgresql/data/ledger.txt && sleep 3600"]
+    volumeMounts:
+    - name: db-storage
+      mountPath: /var/lib/postgresql/data
+  volumes:
+  - name: db-storage
+    persistentVolumeClaim:
+      claimName: orders-db-pvc
